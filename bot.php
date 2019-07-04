@@ -1,10 +1,10 @@
-﻿<?php
+<?php
 #-------------------------[Include]-------------------------#
 require_once('./include/line_class.php');
 require_once('./unirest-php-master/src/Unirest.php');
 #-------------------------[Token]-------------------------#
-$channelAccessToken = 'ng3BRecedJM0YSJO86LGxGbNzMR988yo6ryOXmFtdmCtkv+dKTElnVhi8fVQJFagzWq+rjLdRTSrOvolZ7OK5Fuy+kVWtHqyxbD5RiS/YgZuq9KO2bDAG9l3cL1hAOGPQ599CR6XPhRJCKuEfs4QxQdB04t89/1O/w1cDnyilFU='; 
-$channelSecret = '6cc8129e3f5734779495fe994bf5a7e8';
+$channelAccessToken = 'kVh98/tRZSCiO8gC6SIqdXtWb37JvQzBwo0MtqR8zcxGLfbm00ZoEbcNKapG9WBQzWq+rjLdRTSrOvolZ7OK5Fuy+kVWtHqyxbD5RiS/YgbCKnwX+dgzT0fb1Gk45UONUc+Vjj6+x3+ULRnUN6eu1gdB04t89/1O/w1cDnyilFU='; 
+$channelSecret = '24cc28c514bf625dfcbaeaf4b43045d0';
 #-------------------------[Events]-------------------------#
 $client = new LINEBotTiny($channelAccessToken, $channelSecret);
 $userId     = $client->parseEvents()[0]['source']['userId'];
@@ -51,36 +51,36 @@ if ($modex == 'Normal') {
   );
 
 $i=0;
-$ff = array();
+$bb = array();
 foreach($results as $resultsz){
-$ff[$i] = $resultsz;
+$bb[$i] = $resultsz;
 $i++;
 }
 
 
 $textz .= "กรุณาระบุ*SITE DONOR JOB*ที่ต้องการค้นหา";
 $textz .= "\n";
-$textz .= $ff['0']['name'];
+$textz .= $bb['0']['name'];
 $textz .= "\n";
-$textz .= $ff['1']['name'];
+$textz .= $bb['1']['name'];
 $textz .= "\n";
-$textz .= $ff['2']['name'];
+$textz .= $bb['2']['name'];
 $textz .= "\n";
-$textz .= $ff['3']['name'];
+$textz .= $bb['3']['name'];
 $textz .= "\n";
-$textz .= $ff['4']['name'];
+$textz .= $bb['4']['name'];
 $textz .= "\n";
-$textz .= $ff['5']['name'];
+$textz .= $bb['5']['name'];
 $textz .= "\n";
-$textz .= $ff['6']['name'];
+$textz .= $bb['6']['name'];
 $textz .= "\n";
-$textz .= $ff['7']['name'];
+$textz .= $bb['7']['name'];
 $textz .= "\n";
-$textz .= $ff['8']['name'];
+$textz .= $bb['8']['name'];
 $textz .= "\n";
-$textz .= $ff['9']['name'];
+$textz .= $bb['9']['name'];
 $textz .= "\n";
-$textz .= $ff['10']['name'];
+$textz .= $bb['10']['name'];
     $mreply = array(
         'replyToken' => $replyToken,
         'messages' => array( 
@@ -91,7 +91,7 @@ $textz .= $ff['10']['name'];
      )
      );
 
-$enbb = json_encode($ff);
+$enbb = json_encode($bb);
     file_put_contents('./user/' . $userId . 'data.json', $enbb);
     file_put_contents('./user/' . $userId . 'mode.json', 'keyword');
 }
