@@ -22,8 +22,8 @@ function getUsers(sheet){
     var dataRow = rows[i];
     var record = {};
     record['SITE'] = dataRow[0];
-    record['TEAM'] = dataRow[3];
-    record['WBS'] = dataRow[4];
+    record['TEAM'] = dataRow[4];
+    record['WBS'] = dataRow[5];
     record['BRAND OLT'] = dataRow[8];
     record['PON'] = dataRow[9];
     record['INSTALLATION DATE'] = dataRow[11];
@@ -35,7 +35,7 @@ function getUsers(sheet){
     record['REMARK'] = dataRow[24];
     record['SSR ID'] = dataRow[25];
     record['STATUS TPT'] = dataRow[26];
-// ‡æ‘Ë¡ dataRow µ“¡µÈÕß°“√
+// ‡πÄ‡∏û‡∏¥‡πà‡∏° dataRow ‡∏ï‡∏≤‡∏°‡∏ï‡πâ‡∏≠‡∏á‡∏Å‡∏≤‡∏£
     dataArray.push(record);
     
   }  
@@ -48,5 +48,5 @@ function getUsers(sheet){
   
 }  
   
-  //Õ¬Ë“≈◊¡ ‡º¬·æ√Ë „™Èß“π‡«Á∫ ·≈–°¥Õ—æ‡¥∑
+  //‡∏≠‡∏¢‡πà‡∏≤‡∏•‡∏∑‡∏° ‡πÄ‡∏ú‡∏¢‡πÅ‡∏û‡∏£‡πà ‡πÉ‡∏ä‡πâ‡∏á‡∏≤‡∏ô‡πÄ‡∏ß‡πá‡∏ö ‡πÅ‡∏•‡∏∞‡∏Å‡∏î‡∏≠‡∏±‡∏û‡πÄ‡∏î‡∏ó
 
