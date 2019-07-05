@@ -22,8 +22,6 @@ $msg_title     = $client->parseEvents()[0]['message']['title'];
 $msg_address   = $client->parseEvents()[0]['message']['address'];
 $msg_latitude  = $client->parseEvents()[0]['message']['latitude'];
 $msg_longitude = $client->parseEvents()[0]['message']['longitude'];
-
-
 #----command option----#
 $usertext = explode(" ", $message['text']);
 $command = $usertext[0];
@@ -34,15 +32,12 @@ if (count($usertext) > 2) {
         $options .= $explode[$i];
     }
 }
-
 #------------------------------------------
-
-
 $modex = file_get_contents('./user/' . $userId . 'mode.json');
-
-
 if ($modex == 'Normal') {
-    #$uri = "https://script.google.com/macros/s/AKfycbwugQU30OsbDJQQXc9zW6fNfiWk2IKOr-L9CgOHfutDPCiiXdg/exec";
+    #$uri = "https://itdev.win/test";
+    #$urikey = file_get_contents($uri);
+    #$json = json_decode($urikey, true);
     $uri = "https://script.google.com/macros/s/AKfycbwugQU30OsbDJQQXc9zW6fNfiWk2IKOr-L9CgOHfutDPCiiXdg/exec";
     $response = Unirest\Request::get("$uri");
     $json = json_decode($response->raw_body, true);
@@ -50,21 +45,18 @@ if ($modex == 'Normal') {
     return $user['SITE'] == $command;
     }
   );
-
 $i=0;
 $bb = array();
 foreach($results as $resultsz){
 $bb[$i] = $resultsz;
 $i++;
 }
-
 $site01 .= $bb['0']['SITE DONOR JOB'];
 $site02 .= $bb['1']['SITE DONOR JOB'];
 $site03 .= $bb['2']['SITE DONOR JOB'];
 $site04 .= $bb['3']['SITE DONOR JOB'];
 $site05 .= $bb['4']['SITE DONOR JOB'];
 $site06 .= $bb['5']['SITE DONOR JOB'];
-
 if(empty($site01)) {
   $site01 .= 'ไม่มีเพิ่มเติม';
 }
@@ -84,6 +76,18 @@ if(empty($site06)) {
   $site06 .= 'ไม่มีเพิ่มเติม';
 }
 $textz .= "กรุณาระบุ SITE DONOR JOB ที่ต้องการค้นหา";
+if(empty($results)) {
+      $mreply = array(
+        'replyToken' => $replyToken,
+        'messages' => array( 
+          array(
+                'type' => 'text',
+                'text' => 'ไม่พบข้อมูล'
+)
+        )
+      );
+    }
+else {
     $mreply = array(
         'replyToken' => $replyToken,
         'messages' => array( 
@@ -142,29 +146,24 @@ $textz .= "กรุณาระบุ SITE DONOR JOB ที่ต้องก�
      )
      )
      );
-
 $enbb = json_encode($bb);
     file_put_contents('./user/' . $userId . 'data.json', $enbb);
     file_put_contents('./user/' . $userId . 'mode.json', 'keyword');
+    }
 }
-
 elseif ($modex == 'keyword') {
     $urikey = file_get_contents('./user/' . $userId . 'data.json');
     $deckey = json_decode($urikey, true);
-
     $results = array_filter($deckey, function($user) use ($command) {
     return $user['SITE DONOR JOB'] == $command;
     }
   );
-
-
 $i=0;
 $zaza = array();
 foreach($results as $resultsz){
 $zaza[$i] = $resultsz;
 $i++;
 }
-
 $enzz = json_encode($zaza);
     file_put_contents('./user/' . $userId . 'data.json', $enzz);
 $text .= 'SITE : ' . $zaza[0]['SITE'];
@@ -205,21 +204,13 @@ $text .= 'STATUS TPT : ' . $zaza[0]['STATUS TPT'];
      )
      )
      );
-
     file_put_contents('./user/' . $userId . 'mode.json', 'Normal');
 }
 else {
   file_put_contents('./user/' . $userId . 'mode.json', 'Normal');
 }
-
-
-
-
-
 if (isset($mreply)) {
     $result = json_encode($mreply);
     $client->replyMessage($mreply);
 }  
-
 ?>
-
