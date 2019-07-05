@@ -3,8 +3,8 @@
 require_once('./include/line_class.php');
 require_once('./unirest-php-master/src/Unirest.php');
 #-------------------------[Token]-------------------------#
-$channelAccessToken = 'kVh98/tRZSCiO8gC6SIqdXtWb37JvQzBwo0MtqR8zcxGLfbm00ZoEbcNKapG9WBQzWq+rjLdRTSrOvolZ7OK5Fuy+kVWtHqyxbD5RiS/YgbCKnwX+dgzT0fb1Gk45UONUc+Vjj6+x3+ULRnUN6eu1gdB04t89/1O/w1cDnyilFU='; 
-$channelSecret = '24cc28c514bf625dfcbaeaf4b43045d0';
+$channelAccessToken = '1OSL49zxkfS0UHF+rgnlPPZr3v14+OwyxGwv/3UexqPCsDlPfy4gFetFknIbmYoMrVYGMBWbeK0000ucSiaNNWBqqKbTWWhgXvjbGQi5CsE1bpBouGPQ0PMLdxOFHna6VjJ6H7SH8U5mGGGKZNMggQdB04t89/1O/w1cDnyilFU='; 
+$channelSecret = '485c1b6d74506c3fb18954aa16c935c0';
 #-------------------------[Events]-------------------------#
 $client = new LINEBotTiny($channelAccessToken, $channelSecret);
 $userId     = $client->parseEvents()[0]['source']['userId'];
@@ -42,7 +42,7 @@ $modex = file_get_contents('./user/' . $userId . 'mode.json');
 
 
 if ($modex == 'Normal') {
-    $uri = "https://script.google.com/macros/s/AKfycbyldjsu6mMDl-V-0VH2wtXNbfBMS14I4SbAaF44aRfCL7S6TiQ/exec"; 
+    $uri = "https://script.google.com/macros/s/AKfycbwugQU30OsbDJQQXc9zW6fNfiWk2IKOr-L9CgOHfutDPCiiXdg/exec"; 
     $response = Unirest\Request::get("$uri");
     $json = json_decode($response->raw_body, true);
     $results = array_filter($json['user'], function($user) use ($command) {
