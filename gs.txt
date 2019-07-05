@@ -22,7 +22,7 @@ function getUsers(sheet){
     var dataRow = rows[i];
     var record = {};
     record['SITE'] = dataRow[0];
-    record['SITE DONOR JOB'] = dataRow[1];
+    record['SITE DONOR JOB'] = dataRow[ 1];
     record['TEAM'] = dataRow[4];
     record['WBS'] = dataRow[5];
     record['BRAND OLT'] = dataRow[8];
