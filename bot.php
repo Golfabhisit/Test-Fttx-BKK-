@@ -42,11 +42,12 @@ $modex = file_get_contents('./user/' . $userId . 'mode.json');
 
 
 if ($modex == 'Normal') {
-    $uri = "https://script.google.com/macros/s/AKfycbwugQU30OsbDJQQXc9zW6fNfiWk2IKOr-L9CgOHfutDPCiiXdg/exec"; 
+    #$uri = "https://script.google.com/macros/s/AKfycbwugQU30OsbDJQQXc9zW6fNfiWk2IKOr-L9CgOHfutDPCiiXdg/exec";
+    $uri = "https://script.google.com/macros/s/AKfycbwugQU30OsbDJQQXc9zW6fNfiWk2IKOr-L9CgOHfutDPCiiXdg/exec";
     $response = Unirest\Request::get("$uri");
     $json = json_decode($response->raw_body, true);
     $results = array_filter($json['user'], function($user) use ($command) {
-    return $user['id'] == $command;
+    return $user['SITE'] == $command;
     }
   );
 
@@ -57,27 +58,87 @@ $bb[$i] = $resultsz;
 $i++;
 }
 
+$site01 .= $bb['0']['SITE DONOR JOB'];
+$site02 .= $bb['1']['SITE DONOR JOB'];
+$site03 .= $bb['2']['SITE DONOR JOB'];
+$site04 .= $bb['3']['SITE DONOR JOB'];
+$site05 .= $bb['4']['SITE DONOR JOB'];
+$site06 .= $bb['5']['SITE DONOR JOB'];
 
+if(empty($site01)) {
+  $site01 .= 'ไม่มีเพิ่มเติม';
+}
+if(empty($site02)) {
+  $site02 .= 'ไม่มีเพิ่มเติม';
+}
+if(empty($site03)) {
+  $site03 .= 'ไม่มีเพิ่มเติม';
+}
+if(empty($site04)) {
+  $site04 .= 'ไม่มีเพิ่มเติม';
+}
+if(empty($site05)) {
+  $site05 .= 'ไม่มีเพิ่มเติม';
+}
+if(empty($site06)) {
+  $site06 .= 'ไม่มีเพิ่มเติม';
+}
 $textz .= "กรุณาระบุ SITE DONOR JOB ที่ต้องการค้นหา";
-$textz .= "\n";
-$textz .= $bb['0']['name'];
-$textz .= "\n";
-$textz .= $bb['1']['name'];
-$textz .= "\n";
-$textz .= $bb['2']['name'];
-$textz .= "\n";
-$textz .= $bb['3']['name'];
-$textz .= "\n";
-$textz .= $bb['4']['name'];
-$textz .= "\n";
-$textz .= $bb['5']['name'];
-    
     $mreply = array(
         'replyToken' => $replyToken,
         'messages' => array( 
           array(
                 'type' => 'text',
-                'text' => $textz
+                'text' => $textz,
+                'quickReply' => array(
+                'items' => array(
+                                   array(
+                'type' => 'action',
+                'action' => array(
+                'type' => 'message',
+                'label' => $site01,
+                'text' => $site01
+                                 )
+              ),array(
+                'type' => 'action',
+                'action' => array(
+                'type' => 'message',
+                'label' => $site02,
+                'text' => $site02
+                                 )
+              ),array(
+                'type' => 'action',
+                'action' => array(
+                'type' => 'message',
+                'label' => $site03,
+                'text' => $site03
+                                 )
+              ),array(
+                'type' => 'action',
+                'action' => array(
+                'type' => 'message',
+                'label' => $site04,
+                'text' => $site04
+                                 )
+              )
+              ,array(
+                'type' => 'action',
+                'action' => array(
+                'type' => 'message',
+                'label' => $site05,
+                'text' => $site05
+                                 )
+              )
+              ,array(
+                'type' => 'action',
+                'action' => array(
+                'type' => 'message',
+                'label' => $site06,
+                'text' => $site06
+                                 )
+              )
+                                )
+                                     )
      )
      )
      );
@@ -92,7 +153,7 @@ elseif ($modex == 'keyword') {
     $deckey = json_decode($urikey, true);
 
     $results = array_filter($deckey, function($user) use ($command) {
-    return $user['name'] == $command;
+    return $user['SITE DONOR JOB'] == $command;
     }
   );
 
@@ -106,38 +167,35 @@ $i++;
 
 $enzz = json_encode($zaza);
     file_put_contents('./user/' . $userId . 'data.json', $enzz);
-
-$text .= "result";
+$text .= 'SITE : ' . $zaza[0]['SITE'];
 $text .= "\n";
-$text .= $zaza[0][SITE];
+$text .= 'SITE DONOR JOB : ' . $zaza[0]['SITE DONOR JOB'];
 $text .= "\n";
-$text .= $zaza[0][SITE DONOR JOB];
+$text .= 'TEAM : ' . $zaza[0]['TEAM'];
 $text .= "\n";
-$text .= $zaza[0][TEAM];
+$text .= 'WBS : ' . $zaza[0]['WBS'];
 $text .= "\n";
-$text .= $zaza[0][WBS];
+$text .= 'BRAND OLT : ' . $zaza[0]['BRAND OLT'];
 $text .= "\n";
-$text .= $zaza[0][BRAND OLT];
+$text .= 'PON : ' . $zaza[0]['PON'];
 $text .= "\n";
-$text .= $zaza[0][PON];
+$text .= 'INSTALLATION DATE : ' . $zaza[0]['INSTALLATION DATE'];
 $text .= "\n";
-$text .= $zaza[0][INSTALLATION DATE];
+$text .= 'STATUS : ' . $zaza[0]['STATUS'];
 $text .= "\n";
-$text .= $zaza[0][STATUS];
+$text .= 'PHOTO ON WEB : ' . $zaza[0]['PHOTO ON WEB'];
 $text .= "\n";
-$text .= $zaza[0][PHOTO ON WEB];
+$text .= 'REMARK PHOTO : ' . $zaza[0]['REMARK PHOTO'];
 $text .= "\n";
-$text .= $zaza[0][REMARK PHOTO];
+$text .= 'STATUS PHOTO : ' . $zaza[0]['STATUS PHOTO'];
 $text .= "\n";
-$text .= $zaza[0][STATUS PHOTO];
+$text .= 'STATUS DOC : ' . $zaza[0]['STATUS DOC'];
 $text .= "\n";
-$text .= $zaza[0][STATUS DOC];
+$text .= 'REMARK : ' . $zaza[0]['REMARK'];
 $text .= "\n";
-$text .= $zaza[0][REMARK];
+$text .= 'SSR ID : ' . $zaza[0]['SSR ID'];
 $text .= "\n";
-$text .= $zaza[0][SSR ID];
-$text .= "\n";
-$text .= $zaza[0][STATUS TPT];
+$text .= 'STATUS TPT : ' . $zaza[0]['STATUS TPT'];
     $mreply = array(
         'replyToken' => $replyToken,
         'messages' => array( 
@@ -164,3 +222,4 @@ if (isset($mreply)) {
 }  
 
 ?>
+
