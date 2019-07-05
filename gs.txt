@@ -4,7 +4,7 @@ function doGet(e){
  var ss = SpreadsheetApp.openByUrl("https://docs.google.com/spreadsheets/d/1Dd2Me3F-WOtrECydoaF6NUAUZ3tkLo6vCto9_OgGA5M/edit#gid=0");
 
 // Sheet Name, Chnage Sheet1 to Users in Spread Sheet. Or any other name as you wish
- var sheet = ss.getSheetByName("2019");
+ var sheet = ss.getSheetByName("FB2019");
   
  return getUsers(sheet); 
   
@@ -50,4 +50,5 @@ function getUsers(sheet){
 }  
   
   //อย่าลืม เผยแพร่ ใช้งานเว็บ และกดอัพเดท
+
 
