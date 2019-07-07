@@ -82,7 +82,7 @@ if(empty($results)) {
         'messages' => array( 
           array(
                 'type' => 'text',
-                'text' => 'ไม่พบข้อมูล'
+                'text' => ''
 )
         )
       );
